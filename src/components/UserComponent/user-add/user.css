@@ -1,0 +1,115 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,300;1,400;1,500;1,600;1,700&display=swap");
+
+.man-wrapper-little {
+	width: 40px;
+	height: 40px;
+	background: rgba(253, 118, 112, 0.2);
+}
+/* .logo{
+
+} */
+.man-wrapper {
+	width: 96px;
+	height: 96px;
+	background: rgba(253, 118, 112, 0.2);
+}
+.man-icon {
+	position: absolute;
+	bottom: 2px;
+	right: 4px;
+}
+.btn-bars {
+	font-size: 25px;
+	color: rgb(51, 45, 45);
+}
+.btn-bars:hover {
+	color: rgb(0, 0, 0);
+}
+
+.profile-stats .pie-chart-container {
+	height: 200px;
+	max-width: 500px;
+	background: rgba(255, 255, 255, 0.9);
+	box-shadow: 2px 3px 4px 5px rgba(0, 0, 0, 0.05);
+	border-radius: 5px;
+	margin-bottom: 30px;
+	font-family: "Jost", sans-serif;
+	color: #5c5c5c;
+}
+.profile-stats .recharts-responsive-container {
+	width: 200px !important;
+	height: 200px !important;
+	margin-top: 0;
+	margin-left: 0;
+}
+.profile-stats .recharts-surface {
+	width: 160px !important;
+	height: 160px !important;
+	margin-top: 16px;
+}
+.profile-stats .total {
+	color: #fa2e29;
+	font-size: 18px;
+}
+.profile-stats .slots {
+	font-size: 18px;
+	color: black !important;
+}
+.profile-stats .little-circle-1 {
+	display: block;
+	width: 20px;
+	height: 20px;
+	background: #fa2e29;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.profile-stats .little-circle-2 {
+	display: block;
+	width: 20px;
+	height: 20px;
+	background: #fc7575;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.profile-stats .comleted {
+	font-size: 14px;
+}
+/* ++++++++  Meeting  +++++++++ */
+
+.meeting-container {
+	max-width: 500px;
+	background: rgba(255, 255, 255, 0.9);
+	box-shadow: 2px 3px 4px 5px rgba(0, 0, 0, 0.05);
+	border-radius: 5px;
+	font-family: "Jost", sans-serif;
+	color: #4d4e59;
+}
+.schedule {
+	color: black !important;
+	font-size: 18px;
+}
+.react-calendar {
+	max-width: 280px !important;
+	height: auto;
+	border: none !important;
+}
+.react-calendar button {
+	font-size: 12px;
+}
+.react-calendar__tile--active {
+	background: rgba(253, 94, 90, 0.2) !important;
+	color: #4d4e59 !important;
+}
+.meeting-spot {
+	display: block;
+	width: 8px;
+	height: 7px;
+	background: #fc7575;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.meeteng-paragraph {
+	font-size: 12px;
+	color: #747474;
+}
+
+.highlight {
+	color: red;
+}

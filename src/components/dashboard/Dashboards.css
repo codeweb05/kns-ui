@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,300;1,400;1,500;1,600;1,700&display=swap");
+.btn-active {
+  background: #ffffff;
+  color: #fd7670 !important;
+}
+.btn-sidebar {
+  border-radius: 12px;
+  font-family: "Jost", sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+}
+.sidebar-icon {
+  width: 16px !important;
+  height: 16px !important;
+}
+.btn-table {
+  background: #fd5e5a;
+  border-radius: 2px;
+  font-size: 12px;
+  font-family: "JOST", sans-serif;
+}
+
+th,
+td {
+  font-size: 12px;
+  font-family: "Jost", sans-serif;
+}
+
+.dashboard-table {
+  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  background: White;
+}
+
+.dashboard-logo-wrapper {
+  width: 40px;
+  height: 40px;
+  background: rgba(253, 118, 112, 0.2);
+}
+.dashboard-search {
+  width: 35%;
+}
+.dashboard-form-icon {
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  background: white;
+}
+.dashboard-input {
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  border-left: 0;
+}
+.dashboard-input::-webkit-input-placeholder {
+  font-size: 12px;
+}
+.slots {
+  font-size: 18px;
+  color: black !important;
+  font-family: "Jost", sans-serif;
+}
+.dashboard-select-btn {
+  color: rgba(250, 46, 41, 0.6);
+  border: 1px solid rgba(250, 46, 41, 0.6);
+  font-family: "JOST", sans-serif;
+}
+
+.dashboard-select-btn:hover {
+  background: rgba(250, 46, 41, 0.6);
+}
+
+table tr th, td {
+  vertical-align: middle;
+}

@@ -1,0 +1,22 @@
+
+.btn-red-leaf {
+  background: #fd5e5a;
+  font-family: "JOST", sans-serif;
+  border: none;
+}
+.btn-red-leaf:hover {
+  background: #e63936;
+}
+.login-title {
+  font-family: Jost;
+}
+.login-outline {
+  outline: none;
+}
+.form-control:focus {
+  box-shadow: none;
+}
+
+.bg-red-leaf {
+  background: #fd7670;
+}

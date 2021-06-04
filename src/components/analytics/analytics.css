@@ -1,0 +1,78 @@
+.logo-wrapper-little {
+    width: 40px;
+    height: 40px;
+    background: rgba(253, 118, 112, 0.2);
+}
+
+.paragraph {
+    font-family: 'JOST', sans-serif;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.analytics-title {
+    font-size: 24px;
+    color: black;
+    font-family: 'JOST', sans-serif;
+}
+
+.summa-icon {
+    width: 24px;
+    height: 24px;
+}
+
+/* -----BarChart------ */
+.recharts-responsive-container {
+    height: 380px!important;
+    margin-top: 40px;
+    margin-left: 35px!important;
+}
+.recharts-surface {
+    width: 100%!important;
+    height: 100%!important;
+}
+.recharts-legend-wrapper{
+    display: none;
+}
+.recharts-cartesian-axis-tick {
+    font-size: 12px!important;
+    font-family: 'JOST', sans-serif;
+
+}
+.bar-chart-btn {
+    color: #FD7670;
+    background: #fff;
+    border: 1px solid #FD7670;
+    border-radius: 20px;
+}
+.bar-chart-btn:hover {
+    color: #fff;
+    background:#FD7670;
+    
+}
+
+/* ---------Pie Chart------------- */
+
+#pie .recharts-responsive-container {
+    width: 220px!important;
+    height: 220px!important;
+    margin: 0!important;
+}
+#pie .recharts-responsive-container .recharts-wrapper {
+    width: 220px!important;
+    height: 220px!important;
+}
+#pie .recharts-surface {
+    margin: 0!important;
+}
+
+
+#bar-graph-toggle {
+    width: 184px;
+}
+
+#bar-graph-toggle button {
+    width: 50%;
+    outline: none;
+    border:  0;
+}

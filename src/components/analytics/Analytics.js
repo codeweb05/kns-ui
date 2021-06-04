@@ -15,23 +15,23 @@ export const Analytics = () => {
     const [isMonth, setIsMonth] = useState(false);
     const [data, setData] = useState();
 
-    const getAll = useCallback(() => {
-        getAnalytics(1);
-    }, []);
+    // const getAll = useCallback(() => {
+    //     getAnalytics(1);
+    // }, []);
 
-    useEffect(() => {
-        getAll();
-    }, [getAll]);
+    // useEffect(() => {
+    //     getAll();
+    // }, [getAll]);
 
-    async function getAnalytics(page) {
-        try {
-            const response = await getCustomers({ searchText, page });
-            setTotal(response?.data?.total);
-            setCustomers(response?.data?.customerList);
-        } catch (error) {
-            setError(error?.response?.data?.message);
-        }
-    }
+    // async function getAnalytics(page) {
+    //     try {
+    //         const response = await getCustomers({ searchText, page });
+    //         setTotal(response?.data?.total);
+    //         setCustomers(response?.data?.customerList);
+    //     } catch (error) {
+    //         setError(error?.response?.data?.message);
+    //     }
+    // }
 
     return (
         <div className="row">

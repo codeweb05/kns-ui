@@ -71,10 +71,10 @@ export const AddCustomer = () => {
         initialValues={{
           name: "",
           email: "",
-          stage: "",
+          stage: STAGE_OPTIONS[0].id,
           manager: "",
           contactNumber: "",
-          source: "",
+          source: SOURCE_OPTIONS[0].id,
         }}
         validationSchema={validate}
         onSubmit={(values) => {
@@ -142,19 +142,13 @@ export const AddCustomer = () => {
                       >
                         Save Contact
                       </button>
-                      <button className="customer-btn ms-md-4 ms-2 rounded px-md-5 p-1">
+                      <button type="button" className="customer-btn ms-md-4 ms-2 rounded px-md-5 p-1">
                         <NavLink className="cancel text-decoration-none" to="/">
                           Cancel
                         </NavLink>
                       </button>
                     </div>
                     <div className="col-md-4 col-3 mt-2 pe-0 pe-md-4 text-end">
-                      <NavLink
-                        className="text-danger text-decoration-none"
-                        to="/"
-                      >
-                        Skip
-                      </NavLink>
                     </div>
                   </div>
                 </Form>

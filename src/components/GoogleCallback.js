@@ -28,7 +28,10 @@ export const GoogleCallbackComponent = () => {
 			localStorage.setItem("red_leaf_user", JSON.stringify(user));
 			history.push("/home");
 		} catch (error) {
-			console.log(error);
+			history.push({
+				pathname: '/home/dashboard',
+				state: { error: error?.response?.data?.message }
+			});
 		}
 	}
 

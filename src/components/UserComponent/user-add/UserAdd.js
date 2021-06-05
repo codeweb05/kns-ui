@@ -3,7 +3,7 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import * as moment from "moment";
 // import { updateCustomer } from "../../services/CustomerService";
-import { createUser, logout } from "../../../services/UserService";
+import { createUser } from "../../../services/UserService";
 import { Error } from "../../error/Error";
 import { NavLink, useHistory } from "react-router-dom";
 import logo from "../../../assets/man.png";
@@ -14,6 +14,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./user.css";
 import "react-calendar/dist/Calendar.css";
 import { getName, isAdmin } from '../../../utils/helper';
+import Logout from "../../Logout";
 
 const UserAdd = () => {
 	const [error, setError] = useState("");
@@ -25,7 +26,7 @@ const UserAdd = () => {
 	const onSubmit = async (data) => {
 		try {
 			await createUser(data);
-			// history.push("/home/user-list");
+			history.push("/home/user-list");
 		} catch (error) {
 			setError(error?.response?.data?.message);
 		}
@@ -57,8 +58,7 @@ const UserAdd = () => {
 						<h4 className="slots">{getName()}</h4>
 						<p className="paragraph">{isAdmin() ? 'Admin' : ''}</p>
 					</div>
-					<button className="border-0 mx-3" onClick={logout}>Logout
-          </button>
+					<Logout />
 				</div>
 			</div>
 			<div className="col-12">

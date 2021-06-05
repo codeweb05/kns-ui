@@ -6,7 +6,7 @@ import { SORT_OPTIONS } from "./../../utils/constants/sort-options";
 import { FILTER_OPTIONS } from "./../../utils/constants/filter-options";
 import SearchUsers from "./SearchUsers";
 import { getName, isAdmin } from '../../utils/helper';
-import { logout } from "../../services/UserService";
+import Logout from "../Logout";
 
 export const DashboardHeader = ({ onSearch }) => {
 
@@ -39,8 +39,7 @@ export const DashboardHeader = ({ onSearch }) => {
                         <h4 className="slots">{getName()}</h4>
                         <p className="paragraph">{isAdmin() ? 'Admin' : ''}</p>
                     </div>
-                    <button className="border-0 mx-3" onClick={logout}>Logout
-          </button>
+                    <Logout />
                 </div>
             </div>
             <div className="d-flex justify-content-between">

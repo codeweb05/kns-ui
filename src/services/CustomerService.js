@@ -16,14 +16,12 @@ export const updateCustomer = ({ stage, email }) => {
 };
 
 export const createBooking = async (data) => {
-  let user = localStorage.getItem('red_leaf_user');
-  user = JSON.parse(user);
-  if (user.isGoogleLogin) {
-    return axios.post(`${apiURL}/book`, data);
-  } else {
-    const res = await axios.post(`${apiURL}/google`, data);
-    return res.data.url;
-  }
+  return await axios.post(`${apiURL}/book`, data);
+};
+
+export const getUrl = async (data) => {
+  const res = await axios.post(`${apiURL}/google`, data);
+  return res.data.url;
 };
 
 export const createFirstBooking = (url) => {

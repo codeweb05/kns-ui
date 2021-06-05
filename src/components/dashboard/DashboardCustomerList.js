@@ -1,31 +1,48 @@
-import { useEffect, useState, useCallback, useRef } from "react";
-import { createBooking, getCustomers, updateCustomer } from "../../services/CustomerService";
+import { useEffect, useState, useCallback, useRef, } from "react";
+import { createBooking, getCustomers, updateCustomer, getUrl } from "../../services/CustomerService";
 import { Error } from "../error/Error";
 import { Pagination } from "../utils/Pagination";
 import { BookingPopup } from "./BookingPopup";
 import { STAGE_OPTIONS } from "./../../utils/constants/stage-options"
+import { useLocation } from "react-router-dom";
 
 export const DashboardCustomerList = ({ users }) => {
+  const location = useLocation();
   const [customers, setCustomers] = useState(users);
   const [searchText] = useState("");
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(10);
   const [error, setError] = useState("");
   const [url, setUrl] = useState("");
-
   const linkRef = useRef(null);
 
   const onDateChoosen = async (customerId, meetingTime) => {
     try {
-      const url = await createBooking({
-        customerId: customerId,
-        time: meetingTime
-      });
-      setUrl(url);
+      let user = localStorage.getItem('red_leaf_user');
+      user = JSON.parse(user);
+      if (user.isGoogleLogin) {
+        const data = await createBooking({
+          customerId: customerId,
+          time: meetingTime
+        });
+        getAllCustomers();
+      } else {
+        const url = await getUrl({
+          customerId: customerId,
+          time: meetingTime
+        });
+        setUrl(url);
+      }
     } catch (e) {
-      setError(error?.response?.data?.message);
+      setError(e?.response?.data?.message);
     }
   };
+
+  useEffect(() => {
+    if (location?.state?.error) {
+      setError(location.state.error);
+    }
+  }, [location?.state]);
 
   const getAll = useCallback(() => {
     getAllCustomers(1);

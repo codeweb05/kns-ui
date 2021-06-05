@@ -4,8 +4,8 @@ export const STAGE_OPTIONS = [
     value: "Demo",
   },
   {
-    id: "inserted",
-    value: "Inserted",
+    id: "interested",
+    value: "Interested",
   },
   {
     id: "contacted",

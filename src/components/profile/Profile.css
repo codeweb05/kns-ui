@@ -111,5 +111,5 @@
 }
 
 .highlight {
-	color: red;
+	background: rgba(253, 94, 90, 0.2) !important;
 }

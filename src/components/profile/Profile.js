@@ -3,7 +3,7 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import * as moment from "moment";
 // import { updateCustomer } from "../../services/CustomerService";
-import { getUser, saveUser, logout } from "../../services/UserService";
+import { getUser, saveUser } from "../../services/UserService";
 import { Error } from "../error/Error";
 import { NavLink, useHistory } from "react-router-dom";
 import logo from "../../assets/man.png";
@@ -16,35 +16,35 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Profile.css";
 import "react-calendar/dist/Calendar.css";
 import { getName, isAdmin } from '../../utils/helper';
-
-const mark = [
-  '04-06-2021',
-  '03-06-2021',
-  '05-06-2021'
-]
+import Logout from "../Logout";
 
 export const Profile = () => {
   const [error, setError] = useState("");
   const history = useHistory();
   const [user, setUser] = useState(null);
+  const [meetingData, setMeetingData] = useState([]);
+  const [meetingDayList, setMeetingDayList] = useState([]);
   const [calendar, setCalendar] = useState(new Date());
 
   useEffect(() => {
     getUser().then((res) => {
-      setUser(res.data);
+      setUser(res.data.user);
+      setMeetingData(res.data.meetingData);
     });
   }, []);
 
   const onSubmit = async (data) => {
     try {
-      console.log({ data })
-      // console.log(user)
       await saveUser(data);
-      // history.push("/");
     } catch (error) {
       setError(error?.response?.data?.message);
     }
   };
+
+  useEffect(() => {
+    const meetings = meetingData.filter(meetingDay => moment(meetingDay.meetingStart).format("DD-MM-YYYY") === moment(calendar).format("DD-MM-YYYY"))
+    setMeetingDayList(meetings);
+  }, [calendar, meetingData])
 
   const validate = Yup.object({
     firstName: Yup.string().required("Required"),
@@ -73,8 +73,7 @@ export const Profile = () => {
             <h4 className="slots">{getName()}</h4>
             <p className="paragraph">{isAdmin() ? 'Admin' : ''}</p>
           </div>
-          <button className="border-0 mx-3" onClick={logout}>Logout
-          </button>
+          <Logout />
         </div>
       </div>
       <div className="col-12 col-xl-6 px-5">
@@ -175,46 +174,44 @@ export const Profile = () => {
           <div className="">
             <ProfileStatsChart />
           </div>
-          <div className="d-flex">
-            <div className="pt-5">
+          <div className="pt-5 w-100">
+            <div className="d-flex justify-content-between pb-2">
               <h3 className="slots">Slots</h3>
-              <div className="d-flex">
-                <span className="little-circle-1 me-2 rounded-circle"></span>
-                <p className="comleted">Completed: 2</p>
-              </div>
-              <div className="d-flex">
-                <span className="little-circle-2 me-2 rounded-circle"></span>
-                <p className="comleted">Pending: 18</p>
-              </div>
-            </div>
-            <div className="ms-5 pt-5">
               <h3 className="total">Total:20</h3>
+            </div>
+            <div className="d-flex">
+              <span className="little-circle-1 me-2 rounded-circle"></span>
+              <p className="comleted">Completed: 2</p>
+            </div>
+            <div className="d-flex">
+              <span className="little-circle-2 me-2 rounded-circle"></span>
+              <p className="comleted">Pending: 18</p>
             </div>
           </div>
         </div>
         <div className="row meeting-container mb-5 mx-auto p-4">
           <h4 className="schedule">Schdule</h4>
-          <div className="col-8">
+          <div className="col-12 d-flex justify-content-center">
             <Calendar
               className="calendar"
               onChange={setCalendar}
               value={calendar}
-              onClickDay={(val, e) => {
-                console.log(val)
-                console.log(e)
-              }}
               tileClassName={({ date, view }) => {
-                if (mark.find(x => x === moment(date).format("DD-MM-YYYY"))) {
+                if (meetingData.find(x => moment(x.meetingStart).format("DD-MM-YYYY") === moment(date).format("DD-MM-YYYY"))) {
                   return 'highlight'
                 }
               }}
             />
           </div>
-          <div className="col-4 my-auto">
-            <div className="d-flex align-items-baseline">
-              <span className="meeting-spot rounded-circle me-2"></span>
-              <p className="meeteng-paragraph">4: Meeting with Muhammadali</p>
-            </div>
+          <div className="col-12 my-auto pt-2">
+            {meetingDayList.map((meeting, index) =>
+            (
+              <div key={index} className="d-flex align-items-baseline justify-content-center w-100">
+                <span className="meeting-spot rounded-circle me-2"></span>
+                <p className="meeteng-paragraph">{moment(meeting.meetingStart).format("hh:mm a")}: Meeting with {meeting.name}</p>
+              </div>
+            )
+            )}
           </div>
         </div>
       </div>

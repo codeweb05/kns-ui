@@ -3,7 +3,7 @@ import logo from "../../../assets/man.png";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SearchUser from "./SearchUser";
-import { logout } from '../../../services/UserService';
+import Logout from "../../Logout";
 import { getName, isAdmin, } from "../../../utils/helper";
 
 export const UserHeader = ({ onSearchUser }) => {
@@ -20,8 +20,7 @@ export const UserHeader = ({ onSearchUser }) => {
             <h4 className="slots">{getName()}</h4>
             <p className="paragraph">{isAdmin() ? "Admin" : ""}</p>
           </div>
-          <button className="border-0 mx-3" onClick={logout}>Logout
-          </button>
+          <Logout />
         </div>
       </div>
       <div className="d-flex justify-content-between">

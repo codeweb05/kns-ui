@@ -18,7 +18,7 @@ export const createUser = (data) => {
 }
 
 export const logout = async () => {
-  await axios.post(`${apiURL}/auth/logout`);
+  axios.post(`${apiURL}/auth/logout`);
   localStorage.clear();
   window.location.reload();
 }
@@ -27,4 +27,8 @@ export const getAllUsers = (searchText, page = 1, limit = 10) => {
   return axios.get(`${apiURL}/user/all`, {
     params: { searchText: searchText, page: page, limit: limit },
   });
+};
+
+export const getAnalytics = () => {
+  return axios.get(`${apiURL}/user/analytics`,);
 };

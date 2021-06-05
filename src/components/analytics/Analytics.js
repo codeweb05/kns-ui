@@ -8,31 +8,31 @@ import { NavLink } from 'react-router-dom'
 import BarChartGraph from './BarChart';
 import PieChartGraph from './PieChart';
 import { getName, isAdmin } from '../../utils/helper';
-import { logout } from "../../services/UserService";
+import { getAnalytics } from "../../services/UserService";
+import Logout from "../Logout";
 
 export const Analytics = () => {
 
     const [isMonth, setIsMonth] = useState(false);
     const [data, setData] = useState();
 
-    // const getAll = useCallback(() => {
-    //     getAnalytics(1);
-    // }, []);
+    const getAll = useCallback(() => {
+        getAnalytic();
+    }, []);
 
-    // useEffect(() => {
-    //     getAll();
-    // }, [getAll]);
+    useEffect(() => {
+        getAll();
+    }, [getAll]);
 
-    // async function getAnalytics(page) {
-    //     try {
-    //         const response = await getCustomers({ searchText, page });
-    //         setTotal(response?.data?.total);
-    //         setCustomers(response?.data?.customerList);
-    //     } catch (error) {
-    //         setError(error?.response?.data?.message);
-    //     }
-    // }
-
+    async function getAnalytic() {
+        try {
+            const response = await getAnalytics();
+            setData(response.data)
+        } catch (error) {
+            console.log(error?.response?.data?.message);
+        }
+    }
+    const { totalCounts } = data || {};
     return (
         <div className="row">
             <div className="col-12 d-flex justify-content-between mt-5 px-5">
@@ -45,45 +45,51 @@ export const Analytics = () => {
                         <h4 className="slots">{getName()}</h4>
                         <p className="paragraph">{isAdmin() ? 'Admin' : ''}</p>
                     </div>
-                    <button className="border-0 mx-3" onClick={logout}>Logout
-          </button>
+                    <Logout />
                 </div>
             </div>
             {/* -----Summa-------- */}
-            <div className="col-12 col-lg-9 d-flex justify-content-between mt-4 px-5">
+            <div className="col-12 col-lg-10 d-flex justify-content-between mt-4 px-5">
                 <div className="d-flex">
                     <img className="summa-icon" src={summa} alt="summa" />
                     <div className='ps-2'>
                         <p className="paragraph mb-0">Total Leads</p>
-                        <h4 className="analytics-title">358</h4>
+                        <h4 className="analytics-title">{totalCounts?.total}</h4>
                     </div>
                 </div>
                 <div className="d-flex">
                     <img className="summa-icon" src={summa} alt="summa" />
                     <div className='ps-2'>
                         <p className="paragraph mb-0">Demo</p>
-                        <h4 className="analytics-title">45</h4>
+                        <h4 className="analytics-title">{totalCounts?.demo}</h4>
                     </div>
                 </div>
                 <div className="d-flex">
                     <img className="summa-icon" src={summa} alt="summa" />
                     <div className='ps-2'>
-                        <p className="paragraph mb-0">Interseted</p>
-                        <h4 className="analytics-title">45</h4>
+                        <p className="paragraph mb-0">Interested</p>
+                        <h4 className="analytics-title">{totalCounts?.interested}</h4>
                     </div>
                 </div>
                 <div className="d-flex">
                     <img className="summa-icon" src={summa} alt="summa" />
                     <div className='ps-2'>
                         <p className="paragraph mb-0">Qualified</p>
-                        <h4 className="analytics-title">85</h4>
+                        <h4 className="analytics-title">{totalCounts?.qualified}</h4>
                     </div>
                 </div>
                 <div className="d-flex">
                     <img className="summa-icon" src={summa} alt="summa" />
                     <div className='ps-2'>
                         <p className="paragraph mb-0">UnQualified</p>
-                        <h4 className="analytics-title">308</h4>
+                        <h4 className="analytics-title">{totalCounts?.unqualified}</h4>
+                    </div>
+                </div>
+                <div className="d-flex">
+                    <img className="summa-icon" src={summa} alt="summa" />
+                    <div className='ps-2'>
+                        <p className="paragraph mb-0">Contacted</p>
+                        <h4 className="analytics-title">{totalCounts?.contacted}</h4>
                     </div>
                 </div>
             </div>

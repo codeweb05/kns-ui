@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Formik, Form } from "formik"
 import { NavLink } from 'react-router-dom'
 import { useHistory } from "react-router-dom";
@@ -6,7 +6,7 @@ import { Error } from '../error/Error'
 import * as Yup from 'yup'
 import CustomerInput from '../form-fields/CustomerInput';
 import MySelect from '../form-fields/Select'
-import { createCustomer } from '../../services/CustomerService'
+import { createCustomer, getManagerData } from '../../services/CustomerService'
 import logo from '../../assets/logo.png'
 import './AddCustomer.css'
 // import {faEnvelope, faUser} from '@fortawesome/free-regular-svg-icons';
@@ -18,6 +18,8 @@ import { getName, isAdmin } from '../../utils/helper';
 
 export const AddCustomer = () => {
   const [error, setError] = useState("");
+  const [managerData, setManagerData] = useState([]);
+  const [managerOptions, setManagerOptions] = useState([]);
   const history = useHistory();
 
   const validate = isAdmin() ? Yup.object({
@@ -54,6 +56,31 @@ export const AddCustomer = () => {
       </option>
     ));
   }
+
+  const getAll = useCallback(() => {
+    getManager();
+  }, []);
+
+  useEffect(() => {
+    getAll();
+  }, [getAll]);
+
+  async function getManager() {
+    try {
+      const response = await getManagerData();
+      setManagerData(response.data)
+    } catch (error) {
+      console.log(error?.response?.data?.message);
+    }
+  }
+
+  useEffect(() => {
+    setManagerOptions(managerData.map((option) => (
+      <option key={option.email} value={option.email}>
+        {option.email}
+      </option>
+    )));
+  }, [managerData]);
 
   const onSubmit = async (data) => {
     try {
@@ -110,13 +137,13 @@ export const AddCustomer = () => {
                       name="stage"
                     />
                     {isAdmin() ? (
-                      <CustomerInput
+                      <MySelect
+                        options={managerOptions}
                         icon={faUserClock}
-                        className="form-control mb-4"
                         label="Customer Manager*"
                         name="manager"
-                        type="text"
-                      />) : null}
+                      />
+                    ) : null}
                   </div>
                   <div className="col-12 col-md-6 pb-0 px-md-5 py-md-4">
                     <CustomerInput

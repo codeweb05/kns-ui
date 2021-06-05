@@ -32,7 +32,8 @@ export const Analytics = () => {
             console.log(error?.response?.data?.message);
         }
     }
-    const { totalCounts } = data || {};
+    
+    const { totalCounts, yearlyCounts, monthlyCounts } = data || {};
     return (
         <div className="row">
             <div className="col-12 d-flex justify-content-between mt-5 px-5">
@@ -54,50 +55,49 @@ export const Analytics = () => {
                     <img className="summa-icon" src={summa} alt="summa" />
                     <div className='ps-2'>
                         <p className="paragraph mb-0">Total Leads</p>
-                        <h4 className="analytics-title">{totalCounts?.total}</h4>
+                        <h4 className="analytics-title">{totalCounts?.total || 0}</h4>
                     </div>
                 </div>
                 <div className="d-flex">
                     <img className="summa-icon" src={summa} alt="summa" />
                     <div className='ps-2'>
                         <p className="paragraph mb-0">Demo</p>
-                        <h4 className="analytics-title">{totalCounts?.demo}</h4>
+                        <h4 className="analytics-title">{totalCounts?.demo || 0}</h4>
                     </div>
                 </div>
                 <div className="d-flex">
                     <img className="summa-icon" src={summa} alt="summa" />
                     <div className='ps-2'>
                         <p className="paragraph mb-0">Interested</p>
-                        <h4 className="analytics-title">{totalCounts?.interested}</h4>
+                        <h4 className="analytics-title">{totalCounts?.interested || 0}</h4>
                     </div>
                 </div>
                 <div className="d-flex">
                     <img className="summa-icon" src={summa} alt="summa" />
                     <div className='ps-2'>
                         <p className="paragraph mb-0">Qualified</p>
-                        <h4 className="analytics-title">{totalCounts?.qualified}</h4>
+                        <h4 className="analytics-title">{totalCounts?.qualified || 0}</h4>
                     </div>
                 </div>
                 <div className="d-flex">
                     <img className="summa-icon" src={summa} alt="summa" />
                     <div className='ps-2'>
                         <p className="paragraph mb-0">UnQualified</p>
-                        <h4 className="analytics-title">{totalCounts?.unqualified}</h4>
+                        <h4 className="analytics-title">{totalCounts?.unqualified || 0}</h4>
                     </div>
                 </div>
                 <div className="d-flex">
                     <img className="summa-icon" src={summa} alt="summa" />
                     <div className='ps-2'>
                         <p className="paragraph mb-0">Contacted</p>
-                        <h4 className="analytics-title">{totalCounts?.contacted}</h4>
+                        <h4 className="analytics-title">{totalCounts?.contacted || 0}</h4>
                     </div>
                 </div>
             </div>
             <div className="row mt-5">
                 <div className="col-12 col-lg-3">
                     <h4 className="analytics-title fw-bold ps-5">Leads</h4>
-                    <PieChartGraph />
-                    <PieChartGraph />
+                    <PieChartGraph data={totalCounts} />
                 </div>
                 <div className="col-12 col-lg-9">
                     <div className="d-flex text-center justify-content-center">
@@ -106,7 +106,7 @@ export const Analytics = () => {
                             <button onClick={() => setIsMonth(false)} type="button" className={`bar-chart-btn btn btn-outline-danger px-3 ${!isMonth ? 'active' : ''}`}>Year</button>
                         </div>
                     </div>
-                    <BarChartGraph />
+                    <BarChartGraph data={isMonth ? monthlyCounts : yearlyCounts} />
                 </div>
             </div>
         </div>

@@ -1,22 +1,92 @@
-
 .btn-red-leaf {
-  background: #fd5e5a;
-  font-family: "JOST", sans-serif;
-  border: none;
+	background: #fd5e5a;
+	font-family: "JOST", sans-serif;
+	border: none;
 }
 .btn-red-leaf:hover {
-  background: #e63936;
+	background: #e63936;
 }
 .login-title {
-  font-family: Jost;
+	font-family: Jost;
 }
 .login-outline {
-  outline: none;
+	outline: none;
 }
 .form-control:focus {
-  box-shadow: none;
+	box-shadow: none;
 }
 
 .bg-red-leaf {
-  background: #fd7670;
+	background: #fd7670;
 }
+
+.MuiTab-textColorPrimary.Mui-selected {
+	color: #fd7670 !important;
+}
+
+.PrivateTabIndicator-colorPrimary-3 {
+	background-color: #fd7670 !important;
+}
+.MuiPaper-elevation4 {
+	box-shadow: none !important;
+}
+
+.sameText {
+	font-size: 12px !important;
+	font-family: "Jost", sans-serif !important;
+	text-transform: capitalize !important;
+	color: black !important;
+}
+
+.react-pdf__Page__canvas {
+	width: 100% !important;
+}
+
+
+.dropbtn {
+	color: white;
+	font-size: 16px;
+	border: none;
+	cursor: pointer;
+  }
+  
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+	position: relative;
+	display: inline-block;
+  }
+  
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content li {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdown-content a:hover {background-color: #f1f1f1}
+  
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {
+	display: block;
+  }
+  
+  /* Change the background color of the dropdown button when the dropdown content is shown */
+  .dropdown-content li:hover {
+	background-color: #efefef;
+  }
+
+  .dropdown-content {
+	right: 0;
+  }

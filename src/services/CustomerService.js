@@ -27,3 +27,7 @@ export const getUrl = async (data) => {
 export const createFirstBooking = (url) => {
   return axios.get(`${apiURL}/google/callback${url}`);
 };
+
+export const getManagerData = (url) => {
+  return axios.get(`${apiURL}/manager`);
+};

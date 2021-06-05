@@ -24,12 +24,14 @@ export const Profile = () => {
   const [user, setUser] = useState(null);
   const [meetingData, setMeetingData] = useState([]);
   const [meetingDayList, setMeetingDayList] = useState([]);
+  const [slotData, setSlotData] = useState();
   const [calendar, setCalendar] = useState(new Date());
 
   useEffect(() => {
     getUser().then((res) => {
-      setUser(res.data.user);
-      setMeetingData(res.data.meetingData);
+      setUser(res?.data?.user);
+      setMeetingData(res?.data?.meetingData);
+      setSlotData(res?.data?.slotData);
     });
   }, []);
 
@@ -177,15 +179,15 @@ export const Profile = () => {
           <div className="pt-5 w-100">
             <div className="d-flex justify-content-between pb-2">
               <h3 className="slots">Slots</h3>
-              <h3 className="total">Total:20</h3>
+              <h3 className="total">Total:{slotData?.total || 0}</h3>
             </div>
             <div className="d-flex">
               <span className="little-circle-1 me-2 rounded-circle"></span>
-              <p className="comleted">Completed: 2</p>
+              <p className="comleted">Completed: {slotData?.completed || 0}</p>
             </div>
             <div className="d-flex">
               <span className="little-circle-2 me-2 rounded-circle"></span>
-              <p className="comleted">Pending: 18</p>
+              <p className="comleted">Pending: {slotData?.pending || 0}</p>
             </div>
           </div>
         </div>

@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGripHorizontal, faUser, faChartPie, faCog, faUserCircle, faQuestionCircle, faCommentAlt } from '@fortawesome/free-solid-svg-icons'
 import { Dashboard } from "./dashboard/Dashboard";
 import { Profile } from './profile/Profile'
+import ViewMore from './view-more/ViewMore'
 import { Analytics } from "./analytics/Analytics";
 import Customers from "./customer-table/Customers";
 import UserTable from "./UserComponent/user-table/UserTable";
@@ -70,6 +71,7 @@ export const HomeComponent = () => {
           <Route path="/home/profile" component={Profile}></Route>
           <Route path="/home/analytics" component={Analytics}></Route>
           <Route path="/home/customers" component={Customers}></Route>
+          <Route path="/home/view-more" component={ViewMore}></Route>
           {isAdmin() ? <Route path="/home/user-list" component={UserTable}></Route> : null}
           {isAdmin() ? <Route path="/home/user-add" component={UserAdd}></Route> : null}
           <Route path="/home">

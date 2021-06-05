@@ -1,11 +1,5 @@
-import React, { PureComponent } from 'react';
+import { memo, useState, useEffect } from 'react';
 import { PieChart, Pie, Sector, ResponsiveContainer } from 'recharts';
-
-const data = [
-  { name: 'Conversation', value: 400 },
-  { name: 'Interested', value: 300 }
-];
-
 
 const renderActiveShape = (props) => {
   const RADIAN = Math.PI / 180;
@@ -23,7 +17,7 @@ const renderActiveShape = (props) => {
   return (
     <g>
       <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>
-          {payload.name}
+        {payload.name}
       </text>
       <Sector
         cx={cx}
@@ -47,39 +41,49 @@ const renderActiveShape = (props) => {
   );
 };
 
-export default class PieChartGraph extends PureComponent {
-  static demoUrl = 'https://codesandbox.io/s/pie-chart-with-customized-active-shape-y93si';
+const PieChartGraph = ({ data }) => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [pieData, setPieData] = useState([]);
 
-  state = {
-    activeIndex: 0,
+  const onPieEnter = (_, index) => {
+    setActiveIndex(index);
   };
 
-  onPieEnter = (_, index) => {
-    this.setState({
-      activeIndex: index,
-    });
-  };
+  useEffect(() => {
+    if (data) {
+      const newData = [];
+      Object.keys(data).forEach((key) => {
+        if (key !== 'total') {
+          newData.push({
+            name: key,
+            value: data[key]
+          });
+        }
+      })
+      setPieData(newData);
+    }
+  }, [data])
 
-  render() {
-    return (
-        <div id="pie">
-            <ResponsiveContainer width="100%" height="100%">
-                <PieChart width={450} height={450}>
-                <Pie
-                    activeIndex={this.state.activeIndex}
-                    activeShape={renderActiveShape}
-                    data={data}
-                    cx="50%"
-                    cy="50%"
-                    innerRadius={60}
-                    outerRadius={80}
-                    fill="#FD5E5A"
-                    dataKey="value"
-                    onMouseEnter={this.onPieEnter}
-                />
-                </PieChart>
-            </ResponsiveContainer>
-        </div>
-          );
-  }
+  return (
+    <div id="pie">
+      <ResponsiveContainer width="100%" height="100%">
+        <PieChart width={450} height={450}>
+          <Pie
+            activeIndex={activeIndex}
+            activeShape={renderActiveShape}
+            data={pieData}
+            cx="50%"
+            cy="50%"
+            innerRadius={60}
+            outerRadius={80}
+            fill="#FD5E5A"
+            dataKey="value"
+            onMouseEnter={onPieEnter}
+          />
+        </PieChart>
+      </ResponsiveContainer>
+    </div>
+  );
 }
+
+export default memo(PieChartGraph);

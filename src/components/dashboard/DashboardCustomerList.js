@@ -4,10 +4,11 @@ import { Error } from "../error/Error";
 import { Pagination } from "../utils/Pagination";
 import { BookingPopup } from "./BookingPopup";
 import { STAGE_OPTIONS } from "./../../utils/constants/stage-options"
-import { useLocation } from "react-router-dom";
+import { useLocation ,useHistory} from "react-router-dom";
 
 export const DashboardCustomerList = ({ users }) => {
   const location = useLocation();
+  const history = useHistory();
   const [customers, setCustomers] = useState(users);
   const [searchText] = useState("");
   const [page, setPage] = useState(1);
@@ -99,17 +100,21 @@ export const DashboardCustomerList = ({ users }) => {
         {sortOptions(cr.stage)}
       </select></td>
       <td>{cr.manager}</td>
-      {/* <td>2 hours ago</td> */}
       <td>{cr.contactNumber}</td>
       <td>{cr.email}</td>
       <td>{cr.source}</td>
       <td>
-        {cr.meetingLink ? <button
-          className="btn btn-red-leaf py-1 text-white"
-          onClick={() => openInNewTab(cr.meetingLink)}
-        >
-          Join
-        </button> :
+        {cr.meetingLink ?
+          <button
+            className="btn btn-red-leaf py-1 text-white"
+            onClick={() => history.push({
+              pathname: '/home/view-more',
+              state: { data: { ...cr } }
+            })}
+          >
+            View more
+          </button>
+          :
           <BookingPopup customerId={cr._id} onDateChoosen={onDateChoosen} />}
       </td>
     </tr>

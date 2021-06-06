@@ -12,6 +12,11 @@ export const ViewMoreList = () => {
     }
   }, [location?.state]);
 
+  const openInNewTab = (url) => {
+    const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
+    if (newWindow) newWindow.opener = null
+  }
+
   const tableRows = data.map((cr) => (
     <tr key={cr._id}>
       <th scope="row">{cr.name}</th>

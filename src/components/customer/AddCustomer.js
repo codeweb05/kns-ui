@@ -16,6 +16,8 @@ import { STAGE_OPTIONS } from "./../../utils/constants/stage-options";
 import { SOURCE_OPTIONS } from "./../../utils/constants/source-options";
 import { getName, isAdmin } from '../../utils/helper';
 
+const digitsOnly = (value) => /^\d+$/.test(value)
+
 export const AddCustomer = () => {
   const [error, setError] = useState("");
   const [managerData, setManagerData] = useState([]);
@@ -29,7 +31,7 @@ export const AddCustomer = () => {
       .required(),
     stage: Yup.string().required(),
     manager: Yup.string().required(),
-    contactNumber: Yup.string(),
+    contactNumber: Yup.string().min(10).max(10).test('Digits only', 'The field should have digits only', digitsOnly),
     source: Yup.string().required(),
   }) : Yup.object({
     name: Yup.string().required("Name is required"),
@@ -37,7 +39,7 @@ export const AddCustomer = () => {
       .email()
       .required(),
     stage: Yup.string().required(),
-    contactNumber: Yup.string(),
+    contactNumber: Yup.string().min(10).max(10).test('Digits only', 'The field should have digits only', digitsOnly),
     source: Yup.string().required(),
   });
 

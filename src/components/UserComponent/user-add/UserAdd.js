@@ -16,6 +16,8 @@ import "react-calendar/dist/Calendar.css";
 import { getName, isAdmin } from '../../../utils/helper';
 import Logout from "../../Logout";
 
+const digitsOnly = (value) => /^\d+$/.test(value)
+
 const UserAdd = () => {
 	const [error, setError] = useState("");
 	const history = useHistory();
@@ -36,7 +38,7 @@ const UserAdd = () => {
 		firstName: Yup.string().required("Required"),
 		lastName: Yup.string().required("Required"),
 		email: Yup.string().email("Email is not valid").required("Required"),
-		contactNumber: Yup.string().required("Rquired"),
+		contactNumber: Yup.string().min(10).max(10).test('Digits only', 'The field should have digits only', digitsOnly),
 		address: Yup.string().required("Required"),
 		city: Yup.string().required("Required"),
 		state: Yup.string().required("Required"),

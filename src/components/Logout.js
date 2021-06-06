@@ -4,7 +4,7 @@ import { logout } from "../services/UserService";
 
 export default function Logout() {
 	return (
-		<div class="dropdown">
+		<div className="dropdown">
 			<div className="btn-bars ms-5 dropbtn">
 				<FontAwesomeIcon  icon={faBars} />
 			</div>

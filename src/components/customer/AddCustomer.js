@@ -132,6 +132,13 @@ export const AddCustomer = () => {
                       name="email"
                       type="email"
                     />
+                                       <CustomerInput
+                      icon={faEnvelope}
+                      className="form-control mb-4"
+                      label="Email"
+                      name="email"
+                      type="email"
+                    />
                     <MySelect
                       options={stageOptions()}
                       icon={faStream}

@@ -12,6 +12,7 @@ const browserHistory = createBrowserHistory();
 
 axios.interceptors.request.use(
   (config) => {
+    console.log('hi');
     const { origin } = new URL(config.url);
     const token = localStorage.getItem("red_leaf_token");
     config.headers.authorization = `Bearer ${token}`;

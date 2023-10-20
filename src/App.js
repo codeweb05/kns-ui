@@ -26,7 +26,6 @@ function App() {
 
   return (
     <BrowserRouter history={browserHistory}>
-      <Routes />
     </BrowserRouter>
 
   );

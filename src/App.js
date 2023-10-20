@@ -18,7 +18,7 @@ axios.interceptors.request.use(
     return config;
   },
   (error) => {
-    return Promise.reject(error);
+
   }
 );
 
@@ -26,7 +26,6 @@ function App() {
 
   return (
     <BrowserRouter history={browserHistory}>
-      <Routes />
     </BrowserRouter>
 
   );

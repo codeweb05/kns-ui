@@ -57,7 +57,7 @@ export const HomeComponent = () => {
           </div>
         </div>
       </div>
-      <div className="main-content px-5 col-12 col-md-8">
+      <div className="main-content px-5 col-12 col-md-8 col-xl-9">
         <button
           className="btn bg-transparent position-absolute m-2  btn-menu d-md-none"
           onClick={showMenu}

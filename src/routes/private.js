@@ -14,7 +14,6 @@ const Private = (props) => {
                 isLogin() ? (
                     <Component {...matchProps} />
                 ) : (
-                    <Redirect to="/login" />
                 )
             }
         />
